@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Regular Expressions</title>
+	</head>
+	<body>
+		<form action="" method="post" onsubmit="validate()">
+			<label for="phone">Phone Number:</label><br>
+			<input type="text" name="phone" id="phone"><br><br><br>
+			<label for="postCode" >Postal Code:</label><br>
+			<input type="text" name="postCode" id="postCode">
+			<input type="submit" name="submit" value="Submit">
+
+		</form>
+
+
+		<script type="text/javascript">
+		function validate() {
+	event.preventDefault();
+	var phoneNumber = document.querySelector('#phone').value;
+	// mobile local
+	// var phoneRGEX = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s]{0,1}[0-9]{4}$/;
+	// land line with country code
+	var phoneRGEX = /^([+]{1}|[0]{2})[0-9]{2}[-\s]{0,1}[0-9]{2}[-\s]{0,1}[0-9]{3}[-\s]{0,1}[0-9]{4}$/;
+	var phoneResult = phoneRGEX.test(phoneNumber);
+
+	var postCode = document.querySelector('#postCode').value;
+	var postRGEX = /^[A-Z]{1,2}[0-9]{1,2}?[0-9][A-Z]{2}$/i;
+	var postResult = postRGEX.test(postCode);
+
+	if (phoneResult === false) {
+		console.log('Please enter a valid phone number');
+	} else if (postResult === false) {
+		console.log('Please enter a valid post code');
+	} else if (postResult && phoneResult) {
+		console.log('Phone number correct');
+	}
+}
+</script>
+	</body>
+</html>
